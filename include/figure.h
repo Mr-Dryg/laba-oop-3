@@ -1,19 +1,35 @@
 #pragma once
 #include <array>
+#include <vector>
+#include <iostream>
 
 class Figure
 {
-private:
-    int side_length;
-    double area;
-
 protected:
+    int num_vertexes;
+    
+    double side_length;
+    std::array<double, 2> center;
+    std::vector<std::array<double, 2>> vertices;
+
     Figure() = default;
-    Figure(int side_length) : side_length(side_length), area(0.0) {};
+    Figure(int num_vertexes);
+    Figure(int num_vertexes, double side_length);
+    Figure(int num_vertexes, double side_length, std::array<double, 2> center);
+
+    std::array<double, 2> calculate_center();
+    double calculate_side_length();
+    std::vector<std::array<double, 2>> calculate_vertexes() const;
 
 public:
     virtual ~Figure() = default;
-    
-    virtual std::array<int, 2> geometric_center() const = 0;
-    virtual double operator double() const = 0;
-}
+      
+    std::array<double, 2> get_center() const;
+
+    virtual operator double() const = 0;
+    std::ostream& print(std::ostream& os) const;
+    std::istream& read(std::istream& is);
+};
+
+std::ostream& operator<<(std::ostream& os, const Figure& figure);
+std::istream& operator>>(std::istream& is, Figure& figure);

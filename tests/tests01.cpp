@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "../include/include.h"
+#include "../include/octagon.h"
 
 TEST(test_01, basic_test_set)
 {

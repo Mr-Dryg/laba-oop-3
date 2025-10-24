@@ -1,29 +1,21 @@
 #pragma once
-#include <iostream>
+#include <array>
 #include "figure.h"
 
+#define NUM_OCTAGON_VERTEXES 8
 
-class Octagon(Figure)
+class Octagon: public Figure
 {
-    friend std::ostream& operator<<(std::ostream& out, const Point& point);
-
-private:
-    int side_length;
-    double area;
-
 protected:
-    Octagon() = default;
-    Octagon(int side_length) : side_length(side_length), area(0.0) {};
+    int num_vertexes = NUM_OCTAGON_VERTEXES;
 
 public:
-    virtual ~Octagon() = default;
+    Octagon();
+    Octagon(double side_length);
+    Octagon(double side_length, std::array<double, 2> center);
     
-    virtual std::array<int, 2> geometric_center() const = 0;
-    virtual double operator double() const = 0;
-}
+    ~Octagon() = default;
 
-inline std::ostream& operator<<(std::ostream& os, const Octagon& octagon)
-{
-    os << "Octagon " << octagon.side_length;
-    return os;
-}
+    operator double() const override;
+};
+
