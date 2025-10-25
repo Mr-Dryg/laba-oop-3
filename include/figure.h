@@ -3,6 +3,8 @@
 #include <vector>
 #include <iostream>
 
+#define EPSILON 0.0001
+
 class Figure
 {
 protected:
@@ -27,6 +29,7 @@ public:
     std::array<double, 2> get_center() const;
 
     virtual operator double() const = 0;
+    bool operator == (const Figure& other) const;
     std::ostream& print(std::ostream& os) const;
     std::istream& read(std::istream& is);
 };

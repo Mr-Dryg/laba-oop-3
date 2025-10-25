@@ -1,11 +1,4 @@
 #include <gtest/gtest.h>
-#include "../include/octagon.h"
-
-TEST(test_01, basic_test_set)
-{
-    ASSERT_TRUE();
-}
-
 
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);

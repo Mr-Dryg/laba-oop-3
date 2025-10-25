@@ -40,8 +40,8 @@ std::vector<std::array<double, 2>> Figure::calculate_vertexes() const
 
     for (int i = 0; i < num_vertexes; i++)
     {
-        angle += d_angle;
         vertices[i] = {center[0] + R * cos(angle), center[1] + R * sin(angle)};
+        angle += d_angle;
     }
     return vertices;
 }
@@ -70,6 +70,11 @@ std::istream& Figure::read(std::istream& is)
 std::array<double, 2> Figure::get_center() const
 {
     return center;
+}
+
+bool Figure::operator == (const Figure& other) const
+{
+    return std::abs(double(*this) - double(other)) < EPSILON;
 }
 
 std::ostream& operator<<(std::ostream& os, const Figure& figure)

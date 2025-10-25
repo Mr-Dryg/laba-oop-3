@@ -12,15 +12,17 @@ Square::Square(double side_length, std::array<double, 2> center) : Figure(NUM_SQ
 }
 
 Square::Square(std::array<double, 2> vertex_1, std::array<double, 2> vertex_2) : Figure(NUM_SQUARE_VERTEXES)
-{
-    // if (std::abs(vertex_1[0] - vertex_2[0]) != std::abs(vertex_1[1] - vertex_2[1]))
-    //     throw std::invalid_argument("incorrect vertices for square");
-    
+{  
     double dx = vertex_1[0] - vertex_2[0];
     double dy = vertex_1[1] - vertex_2[1];
     double diagonal = std::sqrt(dx * dx + dy * dy);
     side_length = diagonal / std::sqrt(2);
-    vertices = {vertex_1, vertex_2};
+    vertices = {
+        vertex_1,
+        vertex_2,
+        {vertex_1[0] + side_length, vertex_1[1]},
+        {vertex_1[0], vertex_1[1] + side_length}
+    };
     center = calculate_center();
 }
 
